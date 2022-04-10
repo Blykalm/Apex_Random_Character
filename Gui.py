@@ -4,25 +4,33 @@ from PIL import ImageTk, Image
 
 class Gui:
     # Gui constructor
+
     def __init__ (self):
+        # Createon and attributes of the window
         window = tk.Tk(className="random legend")
         window.configure(bg="#B93038")
         
+        # get the size of the users screen and sets the window size to about half of that
         screen_width = GetSystemMetrics(0)
         screen_height = GetSystemMetrics(1)
         window.geometry(str(round(screen_width*0.5)) + "x" + str(round(screen_height*0.7)))
-        print(str(round(screen_width*0.5)))
-        window.eval('tk::PlaceWindow . center')
 
-        # Image of charecter
-        image_main = Image.open("Images\Characters\Wraith.png")
-        #image_main = img.resize((50, 50), Image.ANTIALIAS)
-        
-        test = ImageTk.PhotoImage(image_main)
+        # Image label of charecter
+        default_image = ImageTk.PhotoImage(Image.open("Images\Characters\Wraith.png"))
+        label_image = tk.Label(image= default_image, 
+                               height=500, 
+                               width=500 , 
+                               bg="#B93038").pack(pady= 30)
 
-        label_image = tk.Label(image= test, height=500, width=500 , bg="#B93038").place(x= 230, y= 50)
-
-
+        # Button to change the character
+        btn_random = tk.Button(window,
+                              text= "Change Character", 
+                              bg = "#F97B2E", 
+                              font= "26", 
+                              pady=4,
+                              foreground="white",
+                              relief="raised").pack(pady= 40)
+    
 
         window.mainloop()
     
